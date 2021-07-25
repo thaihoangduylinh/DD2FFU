@@ -58,9 +58,9 @@ namespace DD2FFU
             var tempvhd = temp + @"\tempdisk.vhd";
             tempvhd = tempvhd.Replace(@"\\", @"\");
 
-            var diskid = @"\\.\physicaldrive6";
+            //var diskid = @"\\.\physicaldrive3";
 
-            /*ulong eMMCDumpSize;
+            ulong eMMCDumpSize;
             ulong SectorSize = 0x200;
 
             if (imgFile.ToLower().Contains(@"\\.\physicaldrive"))
@@ -154,14 +154,14 @@ namespace DD2FFU
                 "Please verify the data free'd is a correct amount, if not, you'll need to capture and apply or clean image further... (The Data partition must be shrunk by: " +
                 diff + "MB) Press any key once checked.", Logging.LoggingLevel.Warning);
             Console.ReadKey();
-            Console.ReadKey();*/
+            Console.ReadKey();
 
             Logging.Log("Committing FFU image...");
 
             ImageUtils.CommitFFU(diskid, ffuFile, antitheftversion, osversion);
             Logging.Log("FFU file has been commited.");
             Logging.Log("Cleaning up temporary VHD file...");
-            //File.Delete(tempvhd);
+            File.Delete(tempvhd);
         }
 
         public static T GetXmlClass<T>(string XmlFile)
